@@ -1,0 +1,43 @@
+/* 주석 */
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+.movie-card {
+    box-shadow: 0 3px 6px gray,
+    0 3px 6px grey;
+    /*위로부터의 여유공간*/
+    margin: 30px;
+    /*좌우 여백*/
+    padding: 20px;
+    /*카드 너비*/
+    width: 300px;
+    /*중앙 맞춤*/
+    justify-self: center;
+    background-color: mediumpurple;
+    /*테두리 둥글게*/
+    border-radius: 15px;
+    /*커서*/
+    cursor: pointer;
+    user-select: none;
+
+}
+
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+}
+
+
+
+
+
