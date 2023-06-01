@@ -14,9 +14,9 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     .then(response => {
         return response.json()
     })
-    .then(movies => {
+    .then(data => {
         //가져온 데이터 사용
-        let movies = movies.results;
+        let movies = data.results;
 
         //영화 검색 이벤트 핸들러
         function handleSearch(event) {
@@ -32,14 +32,14 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
         //영화 카드 리스트 UI 업데이트
         renderMovieCards(searchResults);
-    }
+    })
 
    //영화 카드 리스트 UI 업데이트
 function renderMovieCards(movies) {
             var cardContainer = document.querySelector('.card-container');
             cardContainer.innerHTML = '';  //기존 카드 제거
 
-            movies.forEach(function (movie)) {
+            movies.forEach(function (movie) {
                 var title = movie.title;
                 var overview = movie.overview;
                 var posterPath = movie.poster_path;
@@ -72,7 +72,7 @@ searchForm.addEventListener('submit', handleSearch);
 // 인기 영화 목록 초기 표시
 renderMovieCards(movies);
 
-});
+
 
 
 
