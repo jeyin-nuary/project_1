@@ -41,3 +41,27 @@ div {
 
 
 
+<style>
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.movie-card {
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.movie-card img {
+  width: 100%;
+  height: auto;
+}
+.movie-card h2 {
+  margin: 10px 0;
+}
+.movie-card p, .movie-card span {
+  margin-bottom: 5px;
+}
+</style>

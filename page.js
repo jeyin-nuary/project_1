@@ -17,8 +17,8 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     .then(movies => {
         //가져온 데이터 사용
         let result = movies.results
-        result.forEach((movies) => {
-            if (movies.title === "Schindler's List") {
+        result.forEach(movies => {
+        
                 let title = movies.title;
                 let overview = movies.overview;
                 let poster_path = movies.poster_path;
@@ -40,13 +40,43 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
                 //https://image.tmdb.org/t/p/w500/이미지 url
 
+                
                 // 카드 복제
                 cloneCard(img_path, title, overview, vote_average);
-            }
+            });
 
         });
 
-    });
+        .catch(error => {
+            console.log(error);
+        });
+
+    
+
+//영화 검색기능 구현
+
+
+
+//영화id alert창 구현
+
+// // 각 영화 카드 요소를 선택합니다.
+// var movieCards = document.querySelectorAll('.movie-card');
+
+// // 각 카드에 클릭 이벤트 리스너를 추가합니다.
+// movieCards.forEach(function(card) {
+//   card.addEventListener('click', function() {
+//     // 클릭된 카드의 id 속성을 가져옵니다.
+//     var movieId = card.id;
+    
+//     // 해당 영화 데이터를 찾습니다.
+//     var movieData = movies.find(function(movies) {
+//       return movies.id === movieId;
+//     });
+    
+//     // alert 창을 띄워서 영화 정보를 표시합니다.
+//     window.alert("ID: " + movieId);
+//   });
+// });
 
 
 
@@ -67,40 +97,30 @@ function cloneCard(img_path, title, overview, vote_average) {
   `;
 
     // 카드를 원하는 위치에 추가합니다.
+    //왜 .card-container일까?
     const cardContainer = document.querySelector('.card-container');
     cardContainer.appendChild(newCard);
 
-    // 각각의 영화 카드에 클릭 이벤트 핸들러를 등록합니다.
-    newCard.addEventListener('click', () => {
-        // 클릭한 영화 카드의 데이터 속성인 'data-movie-id'를 가져옵니다.
-        const movieId = card_id;
-
-        // 가져온 영화 ID를 alert 창으로 출력합니다.
-        alert('영화 ID: ' + movieId);
-    });
 }
 
 
+// 각 영화 카드 요소를 선택합니다.
+var movieCards = document.querySelectorAll('.movie-card');
 
-
-
-
-
-
-
-
-//카드 클릭 시 클릭한 영화 id 나타내는 alert창 띄우기 기능
-
-// 영화 카드 요소들을 선택합니다.
-const movieCards = document.querySelectorAll('.movie-card');
-
-// 각각의 영화 카드에 클릭 이벤트 핸들러를 등록합니다.
-movieCards.forEach((card) => {
-    card.addEventListener('click', () => {
-        // 클릭한 영화 카드의 데이터 속성인 'data-movie-id'를 가져옵니다.
-        const movieId = card.getAttribute('data-movie-id');
-
-        // 가져온 영화 ID를 alert 창으로 출력합니다.
-        alert('영화 ID: ' + movieId);
+// 각 카드에 클릭 이벤트 리스너를 추가합니다.
+movieCards.forEach(function(card) {
+  card.addEventListener('click', function() {
+    // 클릭된 카드의 id 속성을 가져옵니다.
+    var movieId = card.id;
+    
+    // 해당 영화 데이터를 찾습니다.
+    var movieData = movies.find(function(movies) {
+      return movies.id === movieId;
     });
+    
+    // alert 창을 띄워서 영화 정보를 표시합니다.
+    window.alert("ID: " + movieId);
+  });
 });
+
+
