@@ -16,111 +16,65 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     })
     .then(movies => {
         //가져온 데이터 사용
-        let result = movies.results
-        result.forEach(movies => {
-        
-                let title = movies.title;
-                let overview = movies.overview;
-                let poster_path = movies.poster_path;
-                let vote_average = movies.vote_average;
-                console.log(title);
-                console.log(overview);
-                console.log(poster_path);
-                console.log(vote_average);
+        let movies = movies.results;
+
+        //영화 검색 이벤트 핸들러
+        function handleSearch(event) {
+            event.preventDefault(); //폼 제출 이벤트 막기
+        }
+
+        //검색어 입력값 가져오기
+        var searchInput = document.getElementById('search-input').value;
 
 
+        //영화 검색
+        var searchResults = movies.filter(movie => movie.title.toLowerCase().includes(searchInput.toLowerCase()));
+
+        //영화 카드 리스트 UI 업데이트
+        renderMovieCards(searchResults);
+    }
+
+   //영화 카드 리스트 UI 업데이트
+function renderMovieCards(movies) {
+            var cardContainer = document.querySelector('.card-container');
+            cardContainer.innerHTML = '';  //기존 카드 제거
+
+            movies.forEach(function (movie)) {
+                var title = movie.title;
+                var overview = movie.overview;
+                var posterPath = movie.poster_path;
+                var voteAverage = movie.vote_average;
 
                 //이미지 주소
-                let img_path = 'https://image.tmdb.org/t/p/w500' + poster_path;
+                var imgPath = 'https://image.tmdb.org/t/p/w500' + posterPath;
 
 
-                //영화정보 카드 리스트 UI 구현
-                //tmdb에서 받아온 데이터 브라우저 화면에 카드 형태로 보이기
-                //image url 은 base url + file size + file path 로 구성됩니다.
+                //새로운 카드 요소 생성
+                var newCard = document.createElement('div');
+                newCard.className = 'movie-card';
+                newCard.innerHTML = `
+        <img src="${imgPath}" alt="${title}" />
+        <h2>${title}</h2>
+        <p>${overview}</p>
+        <span>평점: ${voteAverage}</span>
+      `;
 
-                //https://image.tmdb.org/t/p/w500/이미지 url
-
-                
-                // 카드 복제
-                cloneCard(img_path, title, overview, vote_average);
+                //카드를 카드 컨테이너에 추가
+                cardContainer.appendChild(newCard);
             });
-
-        });
-
-        .catch(error => {
-            console.log(error);
-        });
-
-    
-
-//영화 검색기능 구현
-
-
-
-//영화id alert창 구현
-
-// // 각 영화 카드 요소를 선택합니다.
-// var movieCards = document.querySelectorAll('.movie-card');
-
-// // 각 카드에 클릭 이벤트 리스너를 추가합니다.
-// movieCards.forEach(function(card) {
-//   card.addEventListener('click', function() {
-//     // 클릭된 카드의 id 속성을 가져옵니다.
-//     var movieId = card.id;
-    
-//     // 해당 영화 데이터를 찾습니다.
-//     var movieData = movies.find(function(movies) {
-//       return movies.id === movieId;
-//     });
-    
-//     // alert 창을 띄워서 영화 정보를 표시합니다.
-//     window.alert("ID: " + movieId);
-//   });
-// });
-
-
-
-//영화 정보 카드 리스트 UI 구현
-function cloneCard(img_path, title, overview, vote_average) {
-
-    // 새로운 카드 요소를 생성합니다.
-    const newCard = document.createElement('div');
-    newCard.className = 'movie-card';
-
-
-    // 영화 카드의 내용을 설정합니다.
-    newCard.innerHTML = `
-    <img src="${img_path}" alt="${title}" />
-    <h2>${title}</h2>
-    <p>${overview}</p>
-    <span>평점: ${vote_average}</span>
-  `;
-
-    // 카드를 원하는 위치에 추가합니다.
-    //왜 .card-container일까?
-    const cardContainer = document.querySelector('.card-container');
-    cardContainer.appendChild(newCard);
-
 }
 
 
-// 각 영화 카드 요소를 선택합니다.
-var movieCards = document.querySelectorAll('.movie-card');
+// 검색 이벤트 리스너 등록
+var searchForm = document.querySelector('.search');
+searchForm.addEventListener('submit', handleSearch);
 
-// 각 카드에 클릭 이벤트 리스너를 추가합니다.
-movieCards.forEach(function(card) {
-  card.addEventListener('click', function() {
-    // 클릭된 카드의 id 속성을 가져옵니다.
-    var movieId = card.id;
-    
-    // 해당 영화 데이터를 찾습니다.
-    var movieData = movies.find(function(movies) {
-      return movies.id === movieId;
-    });
-    
-    // alert 창을 띄워서 영화 정보를 표시합니다.
-    window.alert("ID: " + movieId);
-  });
+// 인기 영화 목록 초기 표시
+renderMovieCards(movies);
+
 });
+
+
+
 
 
