@@ -11,34 +11,39 @@ const options = {
 
 
 fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
-    .then(response => response.json())
+    .then(response => {
+        return response.json()
+    })
     .then(movies => {
         //가져온 데이터 사용
         let result = movies.results
-        result.forEach((i) => {
-            let title = i.title;
-            let overview = i.overview;
-            let poster_path = i.poster_path;
-            let vote_average = i.vote_average;
-            console.log(title);
-            console.log(overview);
-            console.log(poster_path);
-            console.log(vote_average);
+        result.forEach((movies) => {
+            if (movies.title === "Schindler's List") {
+                let title = movies.title;
+                let overview = movies.overview;
+                let poster_path = movies.poster_path;
+                let vote_average = movies.vote_average;
+                console.log(title);
+                console.log(overview);
+                console.log(poster_path);
+                console.log(vote_average);
 
 
 
-            //이미지 주소
-            let img_path = 'https://image.tmdb.org/t/p/w500' + poster_path;
+                //이미지 주소
+                let img_path = 'https://image.tmdb.org/t/p/w500' + poster_path;
 
 
-            //영화정보 카드 리스트 UI 구현
-            //tmdb에서 받아온 데이터 브라우저 화면에 카드 형태로 보이기
-            //image url 은 base url + file size + file path 로 구성됩니다.
+                //영화정보 카드 리스트 UI 구현
+                //tmdb에서 받아온 데이터 브라우저 화면에 카드 형태로 보이기
+                //image url 은 base url + file size + file path 로 구성됩니다.
 
-            //https://image.tmdb.org/t/p/w500/이미지 url
+                //https://image.tmdb.org/t/p/w500/이미지 url
 
-            // 카드 복제
-            cloneCard(img_path, title, overview, vote_average);
+                // 카드 복제
+                cloneCard(img_path, title, overview, vote_average);
+            }
+
         });
 
     });
