@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"> <!--내가 만든 css파일명-->
     <title>최고 평점 영화 전시회</title>
+    <script src="page.js"></script>
 
 </head>
 
@@ -13,18 +14,15 @@
     <header> 
         <h1>최고 평점 영화</h1>
         </header> <!--영화 검색창-->
-        <form class="search" onsubmit="handleSearch(event)">
-        <label>영화 검색 : </label>
-        <input type="text" id="search-input" placeholder="영화 제목을 검색해 보세요" />
-        <button type="submit" id="search-btn">검색</button>
-
-    </form> 
-   
+        <!-- <form class="search" onsubmit="handleSearch(event)"> -->
+            <label>영화 검색 : </label>
+            <input type="text" id="search-input" placeholder="영화 제목을 검색해 보세요"  />
+            <button type="submit" id="search-btn">검색</button>
+         <!-- </form>  -->
     <!--카드리스트 전체-->
     <section class="card-container">
         
     </section>
-    <script src="page.js"></script>
 </body>
 
 </html>
