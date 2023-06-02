@@ -107,8 +107,8 @@ renderMovieCards(movies);
             })
 
             
-         //영화 이미지 클릭 이벤트 리스너 등록
-         console( document.querySelectorAll('.movie-card')); // 
+        //  //영화 이미지 클릭 이벤트 리스너 등록
+        //  console.log( document.querySelectorAll('.movie-card')); // 
          const movieImages = document.querySelectorAll('.movie-card img');
          console.log(movieImages);
          movieImages.forEach((image) => {
