@@ -34,6 +34,8 @@ renderMovieCards(movies);
 
 
         //영화 검색, 대소문자 구분 안함
+        //영화 검색, 대소문자 구분 안함
+        //영화 검색, 대소문자 구분 안함 => alt + shift + 아래 화살표 키
 
 
       
@@ -80,13 +82,15 @@ renderMovieCards(movies);
 
 
                     //새로운 카드 요소 생성
-                    var newCard = document.createElement('div');
-                    newCard.className = 'movie-card';
+                    // var newCard = document.createElement('div');
+                    // newCard.className = 'movie-card';
                     const html =`
-                    <img src="${imgPath}" alt="${title}" data-id="${id}"/>
-                    <h2>${title}</h2>
-                    <p>${overview}</p>
-                    <span>평점: ${voteAverage}</span>
+                    <div class="movie-card">
+                        <img src="${imgPath}" alt="${title}" data-id="${id}"/>
+                        <h2>${title}</h2>
+                        <p>${overview}</p>
+                        <span>평점: ${voteAverage}</span>
+                    </div>
                 `;
                 a.push(html)
                 //     newCard.innerHTML = `
@@ -100,28 +104,24 @@ renderMovieCards(movies);
                     // cardContainer.appendChild(newCard);
                     cardContainer.innerHTML=a.join("")
                 // };
-
-
-         //영화 이미지 클릭 이벤트 리스너 등록
-            const movieImages = document.querySelectorAll('.movie-card img');
-            movieImages.forEach((image) => {
-                image.addEventListener('click', handleImageClick);
-
-
-
-// 영화 이미지 클릭 이벤트 핸들러
-function handleImageClick(event) {
-    console.log(event.target);
-    const movieId = event.target.dataset.id; //클릭한 이미지의 영화 id 가져오기
-    alert('ID: ' + movieId);
-
-}
-
-
-
-            });
-
             })
+
+            
+         //영화 이미지 클릭 이벤트 리스너 등록
+         console( document.querySelectorAll('.movie-card')); // 
+         const movieImages = document.querySelectorAll('.movie-card img');
+         console.log(movieImages);
+         movieImages.forEach((image) => {
+             image.addEventListener('click', handleImageClick);
+
+             // 영화 이미지 클릭 이벤트 핸들러
+             function handleImageClick(event) {
+                 console.log(event.target);
+                 const movieId = event.target.dataset.id; //클릭한 이미지의 영화 id 가져오기
+                 alert('ID: ' + movieId);
+
+             }
+         });
 
         // // 영화 이미지 클릭 이벤트 핸들러
         // function handleImageClick(event) {
@@ -137,4 +137,3 @@ function handleImageClick(event) {
 
         }
         // renderMovieCards(movies);
-}
